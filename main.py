@@ -8,8 +8,15 @@ py.init()
 screen = py.display.set_mode((width, height))
 py.display.set_caption('Sorting Algorithms Visualizer')
 
+arr = []
+def resetArray(array):
+    array.clear()
+    for i in range(1, 250):
+        array.insert(randrange(0, 249), i)
+    return
+
 # initial sort [SELECTION, INSERTION, QUICK]
-sort = 0
+sort = -1
 
 # handle key inputs
 def keyActions():
@@ -18,14 +25,11 @@ def keyActions():
         return 0
     elif keys[py.K_i]:
         return 1
-    return
-
-arr = []
-def resetArray(array):
-    array.clear()
-    for i in range(1, 100):
-        array.insert(randrange(0, 99), i)
-    return
+    elif keys[py.K_q]:
+        return 2
+    elif keys[py.K_r]:
+        resetArray(arr)
+    return -1
 
 # initialize loop properties
 clock = py.time.Clock()
@@ -43,7 +47,10 @@ while running:
 
     sort = keyActions()                 # handle key inputs to select sorting algorithm
 
-    visualize(sort, arr, screen)
+    if sort != -1:
+        visualize(sort, arr, screen)
+        whitearr(arr, screen)
+        sort = -1
     
     py.display.flip()                   # display all renders on screen
 

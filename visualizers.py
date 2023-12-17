@@ -7,12 +7,13 @@ def visualize(sort, arr, scr):
     elif sort == 1:
         insertionSort(arr, scr)
     elif sort == 2:
-        quickSort(arr)
+        quickSort(arr, scr)
     return
 
+# Draw the rectangle that corresponds to array[r] with any color.
 def drawrect(r, array, screen, color):
     h = array[r]
-    py.draw.rect(screen, color, py.Rect(50+r*10, 700-h*6, 9, h*6))
+    py.draw.rect(screen, color, py.Rect(20+r*5, 700-h*2.5, 4, h*2.5))
     py.display.flip()
     return
 
@@ -21,15 +22,17 @@ def whitearr(array, screen):
     screen.fill("black")
     for i in range(l):
         h = array[i]
-        py.draw.rect(screen, "white", py.Rect(50+i*10, 700-h*6, 9, h*6))
+        py.draw.rect(screen, "white", py.Rect(20+i*5, 700-h*2.5, 4, h*2.5))
     py.display.flip()
     return
 
+# Aux
 def swap(arr, i, j):
     aux = arr[i]
     arr[i] = arr[j]
     arr[j] = aux
 
+'''                          SORTING ALGORITHMS                        '''
 def selectionSort(array, scr):
     l = len(array)
     for i in range(l):
@@ -39,7 +42,7 @@ def selectionSort(array, scr):
             if array[j] <= array[m]:
                 m = j
                 drawrect(m, array, scr, "green")
-            py.time.delay(10)
+                py.time.delay(10)
             if m != j:
                 drawrect(j, array, scr, "white")
         swap(array, i, m)
@@ -61,6 +64,25 @@ def insertionSort(array, scr):
 
     return
 
-# TO DO
-def quickSort(array):
+def partition(arr, lft, rgt, scr):
+    piv = lft
+    for i in range(lft+1, rgt):
+        if arr[i] < arr[lft]:
+            piv += 1
+            swap(arr, i, piv)
+    swap(arr, lft, piv)
+    return piv
+
+def qsort(arr, lft, rgt, scr):
+    if (lft < rgt):
+        piv = partition(arr, lft, rgt, scr)
+        whitearr(arr, scr)
+        drawrect(piv, arr, scr, "blue")
+        py.time.delay(10)
+        qsort(arr, lft, piv, scr)
+        qsort(arr, piv+1, rgt, scr)
+    return
+
+def quickSort(array, scr):
+    qsort(array, 0, len(array), scr)
     return
