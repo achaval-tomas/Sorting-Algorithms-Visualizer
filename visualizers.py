@@ -61,5 +61,6 @@ def insertionSort(array, scr):
 
     return
 
+# TO DO
 def quickSort(array):
     return

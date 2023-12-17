@@ -15,9 +15,9 @@ sort = 0
 def keyActions():
     keys = py.key.get_pressed()
     if keys[py.K_s]:
-        sort = 0
+        return 0
     elif keys[py.K_i]:
-        sort = 1
+        return 1
     return
 
 arr = []
@@ -41,7 +41,7 @@ while running:
     
     resetArray(arr)
 
-    keyActions()                            # handle key inputs
+    sort = keyActions()                 # handle key inputs to select sorting algorithm
 
     visualize(sort, arr, screen)
     
