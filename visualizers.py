@@ -1,13 +1,23 @@
 import pygame as py
 
+def greenPass(arr, scr):
+    l = len(arr)
+    for i in range(l):
+        h = arr[i]
+        py.draw.rect(scr, "green", py.Rect(20+i*5, 700-h*2.5, 4, h*2.5))
+        py.display.flip()
+        py.time.delay(10)
+    return
+
 def visualize(sort, arr, scr):
     whitearr(arr, scr)
     if sort == 0:
-        insertionSort(arr, scr)
+        selectionSort(arr, scr)
     elif sort == 1:
         insertionSort(arr, scr)
     elif sort == 2:
         quickSort(arr, scr)
+    greenPass(arr, scr)
     return
 
 # Draw the rectangle that corresponds to array[r] with any color.
@@ -42,7 +52,7 @@ def selectionSort(array, scr):
             if array[j] <= array[m]:
                 m = j
                 drawrect(m, array, scr, "green")
-                py.time.delay(10)
+                py.time.delay(5)
             if m != j:
                 drawrect(j, array, scr, "white")
         swap(array, i, m)
@@ -58,7 +68,7 @@ def insertionSort(array, scr):
         while pos > 0 and array[pos] < array[pos-1]:
             drawrect(pos, array, scr, "green")
             swap(array, pos, pos-1)
-            py.time.delay(10)
+            py.time.delay(5)
             pos -= 1
             whitearr(array, scr)
 
@@ -78,7 +88,7 @@ def qsort(arr, lft, rgt, scr):
         piv = partition(arr, lft, rgt, scr)
         whitearr(arr, scr)
         drawrect(piv, arr, scr, "blue")
-        py.time.delay(10)
+        py.time.delay(20)
         qsort(arr, lft, piv, scr)
         qsort(arr, piv+1, rgt, scr)
     return
