@@ -4,7 +4,7 @@ def greenPass(arr, scr):
     l = len(arr)
     for i in range(l):
         h = arr[i]
-        py.draw.rect(scr, "green", py.Rect(20+i*5, 700-h*2.5, 4, h*2.5))
+        py.draw.rect(scr, "green", py.Rect(20+i*5, 780-h*3, 4, h*3))
         py.display.flip()
         py.time.delay(10)
     return
@@ -23,7 +23,7 @@ def visualize(sort, arr, scr):
 # Draw the rectangle that corresponds to array[r] with any color.
 def drawrect(r, array, screen, color):
     h = array[r]
-    py.draw.rect(screen, color, py.Rect(20+r*5, 700-h*2.5, 4, h*2.5))
+    py.draw.rect(screen, color, py.Rect(20+r*5, 780-h*3, 4, h*3))
     py.display.flip()
     return
 
@@ -32,7 +32,7 @@ def whitearr(array, screen):
     screen.fill("black")
     for i in range(l):
         h = array[i]
-        py.draw.rect(screen, "white", py.Rect(20+i*5, 700-h*2.5, 4, h*2.5))
+        py.draw.rect(screen, "white", py.Rect(20+i*5, 780-h*3, 4, h*3))
     py.display.flip()
     return
 

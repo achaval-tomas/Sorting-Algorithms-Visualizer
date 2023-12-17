@@ -2,7 +2,7 @@ import pygame as py
 from random import randrange
 from visualizers import *
 
-width, height = 1280, 720
+width, height = 1280, 800
 
 py.init()
 screen = py.display.set_mode((width, height))
