@@ -14,7 +14,10 @@ def resetArray(array):
     for i in range(250):
         array.append(i+1)
     for i in range(500):
-        swap(arr, randint(0, 249), randint(0, 249))
+        a, b = randint(0, 249), randint(0, 249)
+        aux = arr[a]
+        arr[a] = arr[b]
+        arr[b] = aux
     return
 
 # initial sort [SELECTION, INSERTION, QUICK, MERGE]

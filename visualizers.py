@@ -1,5 +1,11 @@
 import pygame as py
 
+py.font.init()
+my_font = py.font.SysFont('Comic Sans MS', 30)
+comparisons = 0
+array_access = 0
+sort_alg = ""
+
 def greenPass(arr, scr):
     l = len(arr)
     for i in range(l):
@@ -8,17 +14,28 @@ def greenPass(arr, scr):
     return
 
 def visualize(sort, arr, scr):
+    global comparisons, array_access, sort_alg
+    comparisons = 0
+    array_access = 0
     whitearr(arr, scr)
     if sort == 0:
+        sort_alg = "Selection"
         selectionSort(arr, scr)
     elif sort == 1:
+        sort_alg = "Insertion"
         insertionSort(arr, scr)
     elif sort == 2:
+        sort_alg = "Quick"
         quickSort(arr, scr)
     elif sort == 3:
+        sort_alg = "Merge"
         mergeSort(arr, scr)
     greenPass(arr, scr)
     return
+
+def printStats(scr):
+    stats = my_font.render("{} Sort, Comparisons: {}, Array Accesses: {}".format(sort_alg, comparisons, array_access), False, "white")
+    scr.blit(stats, (5,5))
 
 # Draw the rectangle that corresponds to array[r] with any color.
 def drawrect(r, array, screen, color):
@@ -30,20 +47,24 @@ def drawrect(r, array, screen, color):
 def whitearr(array, screen):
     l = len(array)
     screen.fill("black")
+    printStats(screen)
     for i in range(l):
         h = array[i]
-        py.draw.rect(screen, "white", py.Rect(20+i*5, 780-h*3, 4, h*3))
+        py.draw.rect(screen, (255-h/3, 255-h/2, h), py.Rect(20+i*5, 780-h*3, 4, h*3))
     py.display.flip()
     return
 
 # Aux
 def swap(arr, i, j):
+    global array_access
+    array_access += 4
     aux = arr[i]
     arr[i] = arr[j]
     arr[j] = aux
 
 '''                          SORTING ALGORITHMS                        '''
 def selectionSort(array, scr):
+    global comparisons, array_access
     l = len(array)
     for i in range(l):
         m = i
@@ -52,9 +73,10 @@ def selectionSort(array, scr):
             if array[j] <= array[m]:
                 m = j
                 drawrect(m, array, scr, "green")
-                py.time.delay(5)
-            if m != j:
-                drawrect(j, array, scr, "white")
+
+            comparisons += 1
+            array_access += 2
+
         swap(array, i, m)
         whitearr(array, scr)
 
@@ -62,6 +84,7 @@ def selectionSort(array, scr):
 
 
 def insertionSort(array, scr):
+    global comparisons, array_access
     l = len(array)
 
     for i in range(1, l):
@@ -69,25 +92,29 @@ def insertionSort(array, scr):
         while pos > 0 and array[pos] < array[pos-1]:
             drawrect(pos, array, scr, "green")
             swap(array, pos, pos-1)
-            py.time.delay(5)
             pos -= 1
+            comparisons += 1
+            array_access += 2
             whitearr(array, scr)
 
     return
 
 
-def partition(arr, lft, rgt, scr):
+def partition(arr, lft, rgt):
+    global comparisons, array_access
     piv = lft
     for i in range(lft+1, rgt):
         if arr[i] < arr[lft]:
             piv += 1
             swap(arr, i, piv)
+        array_access += 2
+        comparisons += 1
     swap(arr, lft, piv)
     return piv
 
 def qsort(arr, lft, rgt, scr):
     if (lft < rgt):
-        piv = partition(arr, lft, rgt, scr)
+        piv = partition(arr, lft, rgt)
         whitearr(arr, scr)
         drawrect(piv, arr, scr, "green")
         py.time.delay(20)
@@ -101,12 +128,14 @@ def quickSort(array, scr):
 
 
 def merge(arr, lft, mid, rgt, scr):
+    global comparisons, array_access
     # Create deep copies of two halves of the array
     L, R = [], []
     for i in range(mid - lft + 1):
         L.append(arr[lft + i])
     for j in range(rgt - mid):
         R.append(arr[mid + 1 + j])
+    array_access += (rgt-lft+1)
 
     # These two values will act as stoppers
     L.append(100000); R.append(100000)
@@ -121,6 +150,8 @@ def merge(arr, lft, mid, rgt, scr):
             arr[k] = R[j]
             j += 1
         drawrect(k, arr, scr, "blue")
+        comparisons += 1
+        array_access += 4
         py.time.delay(5)
     
     return
