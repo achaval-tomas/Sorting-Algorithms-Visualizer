@@ -12,7 +12,7 @@ arr = []
 def resetArray(array):
     array.clear()
     for i in range(250):
-        array.append(i)
+        array.append(i+1)
     for i in range(500):
         swap(arr, randint(0, 249), randint(0, 249))
     return
