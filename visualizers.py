@@ -90,7 +90,7 @@ def qsort(arr, lft, rgt, scr):
     if (lft < rgt):
         piv = partition(arr, lft, rgt, scr)
         whitearr(arr, scr)
-        drawrect(piv, arr, scr, "blue")
+        drawrect(piv, arr, scr, "green")
         py.time.delay(20)
         qsort(arr, lft, piv, scr)
         qsort(arr, piv+1, rgt, scr)
@@ -130,9 +130,11 @@ def merge(arr, lft, mid, rgt, scr):
     
     while i<n1:
         arr[k] = L[i]
+        drawrect(k, arr, scr, "blue")
         k+=1; i+=1
     while j<n2:
         arr[k] = R[j]
+        drawrect(k, arr, scr, "blue")
         k+=1; j+=1
 
     return

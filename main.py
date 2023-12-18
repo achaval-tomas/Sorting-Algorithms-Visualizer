@@ -1,5 +1,5 @@
 import pygame as py
-from random import randrange
+from random import randint
 from visualizers import *
 
 width, height = 1280, 800
@@ -11,12 +11,16 @@ py.display.set_caption('Sorting Algorithms Visualizer')
 arr = []
 def resetArray(array):
     array.clear()
-    for i in range(1, 250):
-        array.insert(randrange(0, 249), i)
+    for i in range(250):
+        array.append(i)
+    for i in range(500):
+        swap(arr, randint(0, 249), randint(0, 249))
     return
 
 # initial sort [SELECTION, INSERTION, QUICK, MERGE]
 sort = -1
+resetArray(arr)
+whitearr(arr, screen)
 
 # handle key inputs
 def keyActions():
