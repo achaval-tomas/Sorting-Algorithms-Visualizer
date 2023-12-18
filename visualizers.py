@@ -1,11 +1,10 @@
 import pygame as py
+from math import floor
 
 def greenPass(arr, scr):
     l = len(arr)
     for i in range(l):
-        h = arr[i]
-        py.draw.rect(scr, "green", py.Rect(20+i*5, 780-h*3, 4, h*3))
-        py.display.flip()
+        drawrect(i, arr, scr, "green")
         py.time.delay(10)
     return
 
@@ -17,6 +16,8 @@ def visualize(sort, arr, scr):
         insertionSort(arr, scr)
     elif sort == 2:
         quickSort(arr, scr)
+    elif sort == 3:
+        mergeSort(arr, scr)
     greenPass(arr, scr)
     return
 
@@ -60,6 +61,7 @@ def selectionSort(array, scr):
 
     return
 
+
 def insertionSort(array, scr):
     l = len(array)
 
@@ -73,6 +75,7 @@ def insertionSort(array, scr):
             whitearr(array, scr)
 
     return
+
 
 def partition(arr, lft, rgt, scr):
     piv = lft
@@ -95,4 +98,56 @@ def qsort(arr, lft, rgt, scr):
 
 def quickSort(array, scr):
     qsort(array, 0, len(array), scr)
+    return
+
+
+def merge(arr, lft, mid, rgt, scr):
+    n1 = mid - lft + 1
+    n2 = rgt - mid
+ 
+    # Create deep copies of two halves of the array
+    L = [0] * (n1)
+    R = [0] * (n2)
+ 
+    for i in range(0, n1):
+        L[i] = arr[lft + i]
+ 
+    for j in range(0, n2):
+        R[j] = arr[mid + 1 + j]
+    
+    i, j, k = 0, 0, lft
+
+    while i<n1 and j<n2:
+        if L[i] <= R[j]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        drawrect(k, arr, scr, "blue")
+        py.time.delay(5)
+        k+=1
+    
+    while i<n1:
+        arr[k] = L[i]
+        k+=1; i+=1
+    while j<n2:
+        arr[k] = R[j]
+        k+=1; j+=1
+
+    return
+
+def mSort(arr, lft, rgt, scr):
+    if lft < rgt:
+        mid = (lft+rgt)//2
+        mSort(arr, lft, mid, scr)
+        mSort(arr, mid+1, rgt, scr)
+        merge(arr, lft, mid, rgt, scr)
+        whitearr(arr, scr)
+        py.time.delay(20)
+    return
+
+
+def mergeSort(array, scr):
+    mSort(array, 0, len(array)-1, scr)
     return

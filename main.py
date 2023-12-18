@@ -15,7 +15,7 @@ def resetArray(array):
         array.insert(randrange(0, 249), i)
     return
 
-# initial sort [SELECTION, INSERTION, QUICK]
+# initial sort [SELECTION, INSERTION, QUICK, MERGE]
 sort = -1
 
 # handle key inputs
@@ -27,8 +27,11 @@ def keyActions():
         return 1
     elif keys[py.K_q]:
         return 2
+    elif keys[py.K_m]:
+        return 3
     elif keys[py.K_r]:
         resetArray(arr)
+        whitearr(arr, screen)
     return -1
 
 # initialize loop properties
@@ -42,8 +45,6 @@ while running:
     for event in py.event.get():
         if event.type == py.QUIT:
             running = False
-    
-    resetArray(arr)
 
     sort = keyActions()                 # handle key inputs to select sorting algorithm
 
