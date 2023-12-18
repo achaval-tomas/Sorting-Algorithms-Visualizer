@@ -1,5 +1,4 @@
 import pygame as py
-from math import floor
 
 def greenPass(arr, scr):
     l = len(arr)
