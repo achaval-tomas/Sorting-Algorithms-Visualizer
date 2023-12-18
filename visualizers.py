@@ -101,22 +101,19 @@ def quickSort(array, scr):
 
 
 def merge(arr, lft, mid, rgt, scr):
-    n1 = mid - lft + 1
-    n2 = rgt - mid
- 
     # Create deep copies of two halves of the array
-    L = [0] * (n1)
-    R = [0] * (n2)
- 
-    for i in range(0, n1):
-        L[i] = arr[lft + i]
- 
-    for j in range(0, n2):
-        R[j] = arr[mid + 1 + j]
-    
-    i, j, k = 0, 0, lft
+    L, R = [], []
+    for i in range(mid - lft + 1):
+        L.append(arr[lft + i])
+    for j in range(rgt - mid):
+        R.append(arr[mid + 1 + j])
 
-    while i<n1 and j<n2:
+    # These two values will act as stoppers
+    L.append(100000); R.append(100000)
+
+    i, j = 0, 0
+    for k in range(lft, rgt+1):
+        drawrect(k, arr, scr, "black")
         if L[i] <= R[j]:
             arr[k] = L[i]
             i += 1
@@ -125,17 +122,7 @@ def merge(arr, lft, mid, rgt, scr):
             j += 1
         drawrect(k, arr, scr, "blue")
         py.time.delay(5)
-        k+=1
     
-    while i<n1:
-        arr[k] = L[i]
-        drawrect(k, arr, scr, "blue")
-        k+=1; i+=1
-    while j<n2:
-        arr[k] = R[j]
-        drawrect(k, arr, scr, "blue")
-        k+=1; j+=1
-
     return
 
 def mSort(arr, lft, rgt, scr):
@@ -147,7 +134,6 @@ def mSort(arr, lft, rgt, scr):
         whitearr(arr, scr)
         py.time.delay(20)
     return
-
 
 def mergeSort(array, scr):
     mSort(array, 0, len(array)-1, scr)
