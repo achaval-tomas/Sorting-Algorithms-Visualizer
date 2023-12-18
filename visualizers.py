@@ -100,13 +100,16 @@ def insertionSort(array, scr):
     return
 
 
-def partition(arr, lft, rgt):
+def partition(arr, lft, rgt, scr):
     global comparisons, array_access
     piv = lft
     for i in range(lft+1, rgt):
+        drawrect(i, arr, scr, "red")
         if arr[i] < arr[lft]:
+            drawrect(i, arr, scr, "blue")
             piv += 1
             swap(arr, i, piv)
+            py.time.delay(5)
         array_access += 2
         comparisons += 1
     swap(arr, lft, piv)
@@ -114,7 +117,7 @@ def partition(arr, lft, rgt):
 
 def qsort(arr, lft, rgt, scr):
     if (lft < rgt):
-        piv = partition(arr, lft, rgt)
+        piv = partition(arr, lft, rgt, scr)
         whitearr(arr, scr)
         drawrect(piv, arr, scr, "green")
         py.time.delay(20)
