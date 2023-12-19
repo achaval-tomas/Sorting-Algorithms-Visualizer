@@ -41,6 +41,10 @@ def visualize(sort, arr, scr):
         sort_alg = "Bubble"
         drawarr(arr, scr)
         bubbleSort(arr, scr)
+    elif sort == 5:
+        sort_alg = "Cocktail Shaker"
+        drawarr(arr, scr)
+        cocktailSort(arr, scr)
 
     greenPass(arr, scr)
     return
@@ -235,4 +239,46 @@ def bubbleSort(array, scr):
         playTone(array[n-i], 10)
         py.time.delay(20)
 
+    return
+
+
+'''                          BUBBLE SORT                        '''
+def cocktailSort(array, scr):
+    global comparisons, array_access
+    n = len(array)
+    swapped = True
+    start = 0
+    end = n-1
+    while (swapped == True):
+        swapped = False
+ 
+        for i in range(start, end):
+            if (array[i] > array[i + 1]):
+                swap(array, i, i+1)
+                swapped = True
+            comparisons += 1
+            array_access += 2
+
+        drawrect(end, array, scr, "blue")
+        playTone(array[end], 10)
+ 
+        if (swapped == False):
+            break
+
+        swapped = False
+        end -= 1
+ 
+        for i in range(end-1, start-1, -1):
+            if (array[i] > array[i + 1]):
+                swap(array, i, i+1)
+                swapped = True
+            comparisons += 1
+            array_access += 2
+
+        drawrect(start, array, scr, "blue")
+        playTone(array[start], 10)
+
+        start += 1
+        py.time.delay(50)
+        drawarr(array, scr)
     return

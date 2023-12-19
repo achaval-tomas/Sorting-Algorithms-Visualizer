@@ -38,6 +38,8 @@ def keyActions():
         return 3
     elif keys[py.K_b]:
         return 4
+    elif keys[py.K_c]:
+        return 5
     elif keys[py.K_p]:
         soundState()
     elif keys[py.K_r]:
