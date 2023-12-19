@@ -21,7 +21,7 @@ def resetArray():
 # initial sort [SELECTION, INSERTION, QUICK, MERGE]
 sort = -1
 resetArray()
-whitearr(arr, screen)
+drawarr(arr, screen)
 
 # handle key inputs
 def keyActions():
@@ -38,7 +38,7 @@ def keyActions():
         return 4
     elif keys[py.K_r]:
         resetArray()
-        whitearr(arr, screen)
+        drawarr(arr, screen)
     return -1
 
 # initialize loop properties
@@ -57,10 +57,8 @@ while running:
 
     if sort != -1:
         visualize(sort, arr, screen)
-        whitearr(arr, screen)
+        drawarr(arr, screen)
         sort = -1
-    
-    py.display.flip()                   # display all renders on screen
 
     clock.tick(framerate)
 

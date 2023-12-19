@@ -13,7 +13,7 @@ def greenPass(arr, scr):
     l = len(arr)
     for i in range(l):
         drawrect(i, arr, scr, "green")
-        py.time.delay(5)
+        py.time.delay(2)
     return
 
 def visualize(sort, arr, scr):
@@ -23,23 +23,23 @@ def visualize(sort, arr, scr):
 
     if sort == 0:
         sort_alg = "Selection"
-        whitearr(arr, scr)
+        drawarr(arr, scr)
         selectionSort(arr, scr)
     elif sort == 1:
         sort_alg = "Insertion"
-        whitearr(arr, scr)
+        drawarr(arr, scr)
         insertionSort(arr, scr)
     elif sort == 2:
         sort_alg = "Quick"
-        whitearr(arr, scr)
+        drawarr(arr, scr)
         quickSort(arr, scr)
     elif sort == 3:
         sort_alg = "Merge"
-        whitearr(arr, scr)
+        drawarr(arr, scr)
         mergeSort(arr, scr)
     elif sort == 4:
         sort_alg = "Bubble"
-        whitearr(arr, scr)
+        drawarr(arr, scr)
         bubbleSort(arr, scr)
 
     greenPass(arr, scr)
@@ -56,7 +56,7 @@ def drawrect(r, array, screen, color):
     py.display.flip()
     return
 
-def whitearr(array, screen):
+def drawarr(array, screen):
     l = len(array)
     screen.fill("black")
     printStats(screen)
@@ -66,7 +66,7 @@ def whitearr(array, screen):
     py.display.flip()
     return
 
-# Aux
+# Swap elements at index i and j
 def swap(arr, i, j):
     global array_access
     array_access += 4
@@ -74,7 +74,8 @@ def swap(arr, i, j):
     arr[i] = arr[j]
     arr[j] = aux
 
-'''                          SORTING ALGORITHMS                        '''
+
+'''                          SELECTION SORT                        '''
 def selectionSort(array, scr):
     global comparisons, array_access
     n = len(array)
@@ -88,15 +89,18 @@ def selectionSort(array, scr):
 
         drawrect(m, array, scr, "green")
         py.time.delay(50)
+
         swap(array, i, m)
         my_sound.play()
-        whitearr(array, scr)
+
+        drawarr(array, scr)
         drawrect(i, array, scr, "blue")
         py.time.delay(20)
 
     return
 
 
+'''                          INSERTION SORT                        '''
 def insertionSort(array, scr):
     global comparisons, array_access
     l = len(array)
@@ -108,7 +112,8 @@ def insertionSort(array, scr):
             pos -= 1
             comparisons += 1
             array_access += 2
-        whitearr(array, scr)
+
+        drawarr(array, scr)
         drawrect(pos, array, scr, "green")
         my_sound.play()
         py.time.delay(50)
@@ -116,11 +121,14 @@ def insertionSort(array, scr):
     return
 
 
+'''                          QUICK SORT                        '''
 def partition(arr, lft, rgt, scr):
     global comparisons, array_access
     piv = lft
+
     drawrect(piv, arr, scr, "green")
     my_sound.play()
+
     for i in range(lft+1, rgt):
         if arr[i] < arr[lft]:
             drawrect(i, arr, scr, "blue")
@@ -139,8 +147,10 @@ def partition(arr, lft, rgt, scr):
 def qsort(arr, lft, rgt, scr):
     if (lft < rgt):
         piv = partition(arr, lft, rgt, scr)
-        whitearr(arr, scr)
+
+        drawarr(arr, scr)
         py.time.delay(20)
+
         qsort(arr, lft, piv, scr)
         qsort(arr, piv+1, rgt, scr)
     return
@@ -150,6 +160,7 @@ def quickSort(array, scr):
     return
 
 
+'''                          MERGE SORT                        '''
 def merge(arr, lft, mid, rgt, scr):
     global comparisons, array_access
     # Create deep copies of two halves of the array
@@ -173,20 +184,25 @@ def merge(arr, lft, mid, rgt, scr):
             arr[k] = R[j]
             j += 1
         drawrect(k, arr, scr, "blue")
+
         comparisons += 1
         array_access += 4
         py.time.delay(5)
+
     my_sound.play()
     return
 
 def mSort(arr, lft, rgt, scr):
     if lft < rgt:
+
         mid = (lft+rgt)//2
         mSort(arr, lft, mid, scr)
         mSort(arr, mid+1, rgt, scr)
         merge(arr, lft, mid, rgt, scr)
-        whitearr(arr, scr)
+
+        drawarr(arr, scr)
         py.time.delay(5)
+    
     return
 
 def mergeSort(array, scr):
@@ -194,17 +210,23 @@ def mergeSort(array, scr):
     return
 
 
+'''                          BUBBLE SORT                        '''
 def bubbleSort(array, scr):
     global comparisons, array_access
+
     n = len(array)
     for i in range(1,n):
         for j in range(n-i):
+
             if array[j] > array[j+1]:
                 swap(array, j, j+1)
+
             comparisons += 1
             array_access += 2
-        whitearr(array, scr)
+
+        drawarr(array, scr)
         drawrect(n-i, array, scr, "blue")
         my_sound.play()
         py.time.delay(30)
+
     return
