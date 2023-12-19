@@ -74,20 +74,22 @@ def swap(arr, i, j):
 '''                          SORTING ALGORITHMS                        '''
 def selectionSort(array, scr):
     global comparisons, array_access
-    l = len(array)
-    for i in range(l):
+    n = len(array)
+    for i in range(n):
         m = i
-        for j in range(i, l):
-            drawrect(j, array, scr, "blue")
+        for j in range(i, n):
             if array[j] <= array[m]:
                 m = j
-                drawrect(m, array, scr, "green")
 
             comparisons += 1
             array_access += 2
 
+        drawrect(m, array, scr, "green")
+        py.time.delay(50)
         swap(array, i, m)
         whitearr(array, scr)
+        drawrect(i, array, scr, "blue")
+        py.time.delay(20)
 
     return
 
@@ -99,12 +101,13 @@ def insertionSort(array, scr):
     for i in range(1, l):
         pos = i
         while pos > 0 and array[pos] < array[pos-1]:
-            drawrect(pos, array, scr, "green")
             swap(array, pos, pos-1)
             pos -= 1
             comparisons += 1
             array_access += 2
-            whitearr(array, scr)
+        whitearr(array, scr)
+        drawrect(pos, array, scr, "green")
+        py.time.delay(20)
 
     return
 
