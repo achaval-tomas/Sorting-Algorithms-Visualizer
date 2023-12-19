@@ -25,7 +25,9 @@ drawarr(arr, screen)
 
 # handle key inputs
 def keyActions():
+    global sound_on
     keys = py.key.get_pressed()
+    
     if keys[py.K_s]:
         return 0
     elif keys[py.K_i]:
@@ -36,9 +38,12 @@ def keyActions():
         return 3
     elif keys[py.K_b]:
         return 4
+    elif keys[py.K_p]:
+        soundState()
     elif keys[py.K_r]:
         resetArray()
         drawarr(arr, screen)
+
     return -1
 
 # initialize loop properties
@@ -52,8 +57,10 @@ while running:
     for event in py.event.get():
         if event.type == py.QUIT:
             running = False
-
-    sort = keyActions()                 # handle key inputs to select sorting algorithm
+        if event.type == py.KEYDOWN:
+            sort = keyActions()      # handle key inputs to select sorting algorithm
+            while not py.KEYUP:
+                continue
 
     if sort != -1:
         visualize(sort, arr, screen)
