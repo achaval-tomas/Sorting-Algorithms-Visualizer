@@ -34,6 +34,10 @@ def visualize(sort, arr, scr):
         sort_alg = "Merge"
         whitearr(arr, scr)
         mergeSort(arr, scr)
+    elif sort == 4:
+        sort_alg = "Bubble"
+        whitearr(arr, scr)
+        bubbleSort(arr, scr)
 
     greenPass(arr, scr)
     return
@@ -179,4 +183,19 @@ def mSort(arr, lft, rgt, scr):
 
 def mergeSort(array, scr):
     mSort(array, 0, len(array)-1, scr)
+    return
+
+
+def bubbleSort(array, scr):
+    global comparisons, array_access
+    n = len(array)
+    for i in range(1,n):
+        for j in range(n-i):
+            if array[j] > array[j+1]:
+                swap(array, j, j+1)
+            comparisons += 1
+            array_access += 2
+        whitearr(array, scr)
+        drawrect(n-i, array, scr, "blue")
+        py.time.delay(30)
     return

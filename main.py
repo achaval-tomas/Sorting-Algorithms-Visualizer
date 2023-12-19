@@ -34,6 +34,8 @@ def keyActions():
         return 2
     elif keys[py.K_m]:
         return 3
+    elif keys[py.K_b]:
+        return 4
     elif keys[py.K_r]:
         resetArray()
         whitearr(arr, screen)
