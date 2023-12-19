@@ -8,12 +8,10 @@ py.init()
 screen = py.display.set_mode((width, height))
 py.display.set_caption('Sorting Algorithms Visualizer')
 
-arr = []
-def resetArray(array):
-    array.clear()
-    for i in range(250):
-        array.append(i+1)
-    for i in range(500):
+arr = [i+1 for i in range(250)]
+def resetArray():
+    global arr
+    for _ in range(500):
         a, b = randint(0, 249), randint(0, 249)
         aux = arr[a]
         arr[a] = arr[b]
@@ -22,7 +20,7 @@ def resetArray(array):
 
 # initial sort [SELECTION, INSERTION, QUICK, MERGE]
 sort = -1
-resetArray(arr)
+resetArray()
 whitearr(arr, screen)
 
 # handle key inputs
@@ -37,7 +35,7 @@ def keyActions():
     elif keys[py.K_m]:
         return 3
     elif keys[py.K_r]:
-        resetArray(arr)
+        resetArray()
         whitearr(arr, screen)
     return -1
 
