@@ -17,19 +17,24 @@ def visualize(sort, arr, scr):
     global comparisons, array_access, sort_alg
     comparisons = 0
     array_access = 0
-    whitearr(arr, scr)
+    
     if sort == 0:
         sort_alg = "Selection"
+        whitearr(arr, scr)
         selectionSort(arr, scr)
     elif sort == 1:
         sort_alg = "Insertion"
+        whitearr(arr, scr)
         insertionSort(arr, scr)
     elif sort == 2:
         sort_alg = "Quick"
+        whitearr(arr, scr)
         quickSort(arr, scr)
     elif sort == 3:
         sort_alg = "Merge"
+        whitearr(arr, scr)
         mergeSort(arr, scr)
+
     greenPass(arr, scr)
     return
 
