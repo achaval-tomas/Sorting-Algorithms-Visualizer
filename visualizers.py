@@ -1,4 +1,5 @@
 import pygame as py
+from sound import *
 
 py.font.init()
 my_font = py.font.SysFont('Comic Sans MS', 30)
@@ -6,9 +7,6 @@ comparisons = 0
 array_access = 0
 sort_alg = ""
 
-py.mixer.init()
-my_sound = py.mixer.Sound('sound.wav')
-my_sound.set_volume(0.2)
 sound_on = False
 
 def greenPass(arr, scr):
@@ -80,9 +78,9 @@ def soundState():
     global sound_on
     sound_on = not sound_on
 
-def play(sound):
+def playTone(pitch):
     if sound_on:
-        sound.play()
+        playPitch(200+pitch)
     return
 
 '''                          SELECTION SORT                        '''
@@ -101,7 +99,7 @@ def selectionSort(array, scr):
         py.time.delay(50)
 
         swap(array, i, m)
-        play(my_sound)
+        playTone(array[i])
 
         drawarr(array, scr)
         drawrect(i, array, scr, "blue")
@@ -125,7 +123,7 @@ def insertionSort(array, scr):
 
         drawarr(array, scr)
         drawrect(pos, array, scr, "green")
-        play(my_sound)
+        playTone(array[pos])
         py.time.delay(50)
 
     return
@@ -137,7 +135,7 @@ def partition(arr, lft, rgt, scr):
     piv = lft
 
     drawrect(piv, arr, scr, "green")
-    play(my_sound)
+    playTone(arr[piv])
 
     for i in range(lft+1, rgt):
         if arr[i] < arr[lft]:
@@ -199,7 +197,7 @@ def merge(arr, lft, mid, rgt, scr):
         array_access += 4
         py.time.delay(5)
 
-    play(my_sound)
+    playTone(arr[mid])
     return
 
 def mSort(arr, lft, rgt, scr):
@@ -236,7 +234,7 @@ def bubbleSort(array, scr):
 
         drawarr(array, scr)
         drawrect(n-i, array, scr, "blue")
-        play(my_sound)
+        playTone(array[n-i])
         py.time.delay(30)
 
     return
