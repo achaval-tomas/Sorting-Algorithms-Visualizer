@@ -6,6 +6,9 @@ comparisons = 0
 array_access = 0
 sort_alg = ""
 
+py.mixer.init()
+my_sound = py.mixer.Sound('sound.wav')
+
 def greenPass(arr, scr):
     l = len(arr)
     for i in range(l):
@@ -86,6 +89,7 @@ def selectionSort(array, scr):
         drawrect(m, array, scr, "green")
         py.time.delay(50)
         swap(array, i, m)
+        my_sound.play()
         whitearr(array, scr)
         drawrect(i, array, scr, "blue")
         py.time.delay(20)
@@ -106,7 +110,8 @@ def insertionSort(array, scr):
             array_access += 2
         whitearr(array, scr)
         drawrect(pos, array, scr, "green")
-        py.time.delay(30)
+        my_sound.play()
+        py.time.delay(50)
 
     return
 
@@ -115,6 +120,7 @@ def partition(arr, lft, rgt, scr):
     global comparisons, array_access
     piv = lft
     drawrect(piv, arr, scr, "green")
+    my_sound.play()
     for i in range(lft+1, rgt):
         if arr[i] < arr[lft]:
             drawrect(i, arr, scr, "blue")
@@ -170,7 +176,7 @@ def merge(arr, lft, mid, rgt, scr):
         comparisons += 1
         array_access += 4
         py.time.delay(5)
-    
+    my_sound.play()
     return
 
 def mSort(arr, lft, rgt, scr):
@@ -199,5 +205,6 @@ def bubbleSort(array, scr):
             array_access += 2
         whitearr(array, scr)
         drawrect(n-i, array, scr, "blue")
+        my_sound.play()
         py.time.delay(30)
     return
