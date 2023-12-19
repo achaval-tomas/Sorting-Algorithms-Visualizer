@@ -96,10 +96,9 @@ def selectionSort(array, scr):
             array_access += 2
 
         drawrect(m, array, scr, "green")
-        py.time.delay(50)
-
         swap(array, i, m)
         playTone(array[i])
+        py.time.delay(40)
 
         drawarr(array, scr)
         drawrect(i, array, scr, "blue")
@@ -124,7 +123,7 @@ def insertionSort(array, scr):
         drawarr(array, scr)
         drawrect(pos, array, scr, "green")
         playTone(array[pos])
-        py.time.delay(50)
+        py.time.delay(40)
 
     return
 
@@ -157,7 +156,7 @@ def qsort(arr, lft, rgt, scr):
         piv = partition(arr, lft, rgt, scr)
 
         drawarr(arr, scr)
-        py.time.delay(20)
+        py.time.delay(10)
 
         qsort(arr, lft, piv, scr)
         qsort(arr, piv+1, rgt, scr)
@@ -209,7 +208,6 @@ def mSort(arr, lft, rgt, scr):
         merge(arr, lft, mid, rgt, scr)
 
         drawarr(arr, scr)
-        py.time.delay(5)
     
     return
 
@@ -235,6 +233,6 @@ def bubbleSort(array, scr):
         drawarr(array, scr)
         drawrect(n-i, array, scr, "blue")
         playTone(array[n-i])
-        py.time.delay(30)
+        py.time.delay(20)
 
     return
