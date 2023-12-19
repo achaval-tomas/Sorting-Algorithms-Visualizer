@@ -10,7 +10,7 @@ def greenPass(arr, scr):
     l = len(arr)
     for i in range(l):
         drawrect(i, arr, scr, "green")
-        py.time.delay(10)
+        py.time.delay(5)
     return
 
 def visualize(sort, arr, scr):
@@ -80,7 +80,6 @@ def selectionSort(array, scr):
         for j in range(i, n):
             if array[j] <= array[m]:
                 m = j
-
             comparisons += 1
             array_access += 2
 
@@ -107,7 +106,7 @@ def insertionSort(array, scr):
             array_access += 2
         whitearr(array, scr)
         drawrect(pos, array, scr, "green")
-        py.time.delay(20)
+        py.time.delay(30)
 
     return
 
