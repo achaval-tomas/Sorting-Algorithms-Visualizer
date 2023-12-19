@@ -22,7 +22,6 @@ class Note(Sound):
 
 def playPitch(pitch):
     py.mixer.pre_init(44100, -16, 1, 1024)
-    py.init()
     note = Note(pitch)
     note.play(-1)
     py.time.delay(10)
