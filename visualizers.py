@@ -8,6 +8,7 @@ sort_alg = ""
 
 py.mixer.init()
 my_sound = py.mixer.Sound('sound.wav')
+my_sound.set_volume(0.2)
 
 def greenPass(arr, scr):
     l = len(arr)
