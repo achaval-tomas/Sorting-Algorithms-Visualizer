@@ -17,7 +17,7 @@ def visualize(sort, arr, scr):
     global comparisons, array_access, sort_alg
     comparisons = 0
     array_access = 0
-    
+
     if sort == 0:
         sort_alg = "Selection"
         whitearr(arr, scr)
@@ -45,7 +45,7 @@ def printStats(scr):
 # Draw the rectangle that corresponds to array[r] with any color.
 def drawrect(r, array, screen, color):
     h = array[r]
-    py.draw.rect(screen, color, py.Rect(20+r*5, 780-h*3, 4, h*3))
+    py.draw.rect(screen, color, py.Rect(15+r*5, 780-h*3, 4, h*3))
     py.display.flip()
     return
 
@@ -55,7 +55,7 @@ def whitearr(array, screen):
     printStats(screen)
     for i in range(l):
         h = array[i]
-        py.draw.rect(screen, (255-h/3, 255-h/2, h), py.Rect(20+i*5, 780-h*3, 4, h*3))
+        py.draw.rect(screen, (255-h/3, 255-h/2, h), py.Rect(15+i*5, 780-h*3, 4, h*3))
     py.display.flip()
     return
 
@@ -108,15 +108,19 @@ def insertionSort(array, scr):
 def partition(arr, lft, rgt, scr):
     global comparisons, array_access
     piv = lft
+    drawrect(piv, arr, scr, "green")
     for i in range(lft+1, rgt):
-        drawrect(i, arr, scr, "red")
         if arr[i] < arr[lft]:
             drawrect(i, arr, scr, "blue")
             piv += 1
             swap(arr, i, piv)
-            py.time.delay(5)
+        else:
+            drawrect(i, arr, scr, "red")
+        
         array_access += 2
         comparisons += 1
+        py.time.delay(5)
+
     swap(arr, lft, piv)
     return piv
 
@@ -124,7 +128,6 @@ def qsort(arr, lft, rgt, scr):
     if (lft < rgt):
         piv = partition(arr, lft, rgt, scr)
         whitearr(arr, scr)
-        drawrect(piv, arr, scr, "green")
         py.time.delay(20)
         qsort(arr, lft, piv, scr)
         qsort(arr, piv+1, rgt, scr)
