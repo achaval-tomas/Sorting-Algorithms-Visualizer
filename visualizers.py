@@ -13,7 +13,7 @@ def greenPass(arr, scr):
     l = len(arr)
     for i in range(l):
         drawrect(i, arr, scr, "green")
-        py.time.delay(2)
+        playTone(i+1, 3)
     return
 
 def visualize(sort, arr, scr):
@@ -78,9 +78,9 @@ def soundState():
     global sound_on
     sound_on = not sound_on
 
-def playTone(pitch):
+def playTone(pitch, duration):
     if sound_on:
-        playPitch(200+pitch)
+        playPitch(200+pitch, duration)
     return
 
 '''                          SELECTION SORT                        '''
@@ -97,7 +97,7 @@ def selectionSort(array, scr):
 
         drawrect(m, array, scr, "green")
         swap(array, i, m)
-        playTone(array[i])
+        playTone(array[i], 10)
         py.time.delay(40)
 
         drawarr(array, scr)
@@ -122,7 +122,7 @@ def insertionSort(array, scr):
 
         drawarr(array, scr)
         drawrect(pos, array, scr, "green")
-        playTone(array[pos])
+        playTone(array[pos], 10)
         py.time.delay(40)
 
     return
@@ -134,7 +134,7 @@ def partition(arr, lft, rgt, scr):
     piv = lft
 
     drawrect(piv, arr, scr, "green")
-    playTone(arr[piv])
+    playTone(arr[piv], 10)
 
     for i in range(lft+1, rgt):
         if arr[i] < arr[lft]:
@@ -196,7 +196,7 @@ def merge(arr, lft, mid, rgt, scr):
         array_access += 4
         py.time.delay(5)
 
-    playTone(arr[mid])
+    playTone(arr[mid], 10)
     return
 
 def mSort(arr, lft, rgt, scr):
@@ -232,7 +232,7 @@ def bubbleSort(array, scr):
 
         drawarr(array, scr)
         drawrect(n-i, array, scr, "blue")
-        playTone(array[n-i])
+        playTone(array[n-i], 10)
         py.time.delay(20)
 
     return

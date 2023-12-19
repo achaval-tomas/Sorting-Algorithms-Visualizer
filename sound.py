@@ -20,9 +20,9 @@ class Note(Sound):
                 samples[time] = -amplitude
         return samples
 
-def playPitch(pitch):
+def playPitch(pitch, duration):
     py.mixer.pre_init(44100, -16, 1, 1024)
     note = Note(pitch)
     note.play(-1)
-    py.time.delay(10)
+    py.time.delay(duration)
     note.stop()
