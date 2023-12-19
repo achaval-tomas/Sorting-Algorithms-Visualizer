@@ -180,7 +180,7 @@ def mSort(arr, lft, rgt, scr):
         mSort(arr, mid+1, rgt, scr)
         merge(arr, lft, mid, rgt, scr)
         whitearr(arr, scr)
-        py.time.delay(20)
+        py.time.delay(5)
     return
 
 def mergeSort(array, scr):
