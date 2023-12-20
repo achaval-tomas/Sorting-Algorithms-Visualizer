@@ -8,4 +8,4 @@ Press ```r``` to re-randomize the columns. <br>
 Press ```p``` to switch the sound on or off. <br>
 
 ## Check it out
-https://github.com/achaval-tomas/Sorting-Algorithms-Visualizer/assets/134091945/5ac864b8-a7d2-4398-b2ac-5e256571aadd
+https://github.com/achaval-tomas/Sorting-Algorithms-Visualizer/assets/134091945/c7afb709-f0d4-4c4e-a460-f19e84a69c89
