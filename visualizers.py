@@ -1,5 +1,6 @@
 import pygame as py
 from sound import *
+from math import sin, cos
 
 py.font.init()
 my_font = py.font.SysFont('Comic Sans MS', 30)
@@ -56,7 +57,7 @@ def printStats(scr):
 # Draw the rectangle that corresponds to array[r] with any color.
 def drawrect(r, array, screen, color):
     h = array[r]
-    py.draw.rect(screen, color, py.Rect(15+r*5, 780-h*3, 4, h*3))
+    py.draw.rect(screen, color, py.Rect(15+r*5, 780-h*3, 5, h*3))
     py.display.flip()
     return
 
@@ -66,7 +67,7 @@ def drawarr(array, screen):
     printStats(screen)
     for i in range(l):
         h = array[i]
-        py.draw.rect(screen, (255-h/3, 255-h/2, h), py.Rect(15+i*5, 780-h*3, 4, h*3))
+        py.draw.rect(screen, (50+h*0.35, 255-h*0.8, 100+h*0.3), py.Rect(15+i*5, 780-h*3, 5, h*3))
     py.display.flip()
     return
 
